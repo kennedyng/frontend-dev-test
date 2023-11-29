@@ -4,7 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import { useErrorBoundary } from "react-error-boundary";
 import { useEffect } from "react";
-import { ManageUsers, Products } from "./pages";
+import { AddUser, ManageUsers, Products } from "./pages";
 import { RootLayout } from "./layouts";
 const queryClient = new QueryClient();
 function App() {
@@ -20,7 +20,17 @@ function App() {
 
         {
           path: "manage-users",
-          element: <ManageUsers />,
+
+          children: [
+            {
+              index: true,
+              element: <ManageUsers />,
+            },
+            {
+              path: "add-one",
+              element: <AddUser />,
+            },
+          ],
         },
       ],
     },
