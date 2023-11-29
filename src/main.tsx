@@ -4,12 +4,16 @@ import App from "./App.tsx";
 import "./index.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { RecoilRoot } from "recoil";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "./components/ErrorFallback.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ChakraProvider>
-      <RecoilRoot>
-        <App />
-      </RecoilRoot>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </ErrorBoundary>
     </ChakraProvider>
   </React.StrictMode>
 );
